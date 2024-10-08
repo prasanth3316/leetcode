@@ -1,0 +1,20 @@
+class Solution:
+    def maxGoodNumber(self, nums: List[int]) -> int:
+        nums=[int(bin(i)[2:]) for i in nums]
+        for i in range(len(nums)-1):
+            for j in range(len(nums)-1-i):
+                if int(str(nums[j])+str(nums[j+1]))< int(str(nums[j+1])+str(nums[j])):
+                    nums[j],nums[j+1]=nums[j+1],nums[j]
+        a=""
+        for i in nums:
+            a+=str(i)
+        num=0
+        power=1
+        for i in range(len(a)-1,-1,-1):
+            num+=power*int(a[i])
+            power*=2
+        
+        return num
+        
+
+#custom sort technique - 10,2 checking 102 and 210 which combination is best - good Question
